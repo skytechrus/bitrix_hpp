@@ -12,8 +12,10 @@ if ($currency === "RUR") {
 $Sum = number_format($Sum, 2, '.', '');
 
 $host = COption::GetOptionString("main", "server_name", $_SERVER["HTTP_HOST"]);
-if($host == "") $host = $_SERVER["HTTP_HOST"];
-$host = $_SERVER['HTTPS'] == 'on' ? 'https://'.$host : 'http://'.$host;
+if ($host == "") {
+    $host = $_SERVER["HTTP_HOST"];
+}
+$host = $_SERVER['HTTPS'] == 'on' ? 'https://' . $host : 'http://' . $host;
 
 function getSignature($data, $secretKey)
 {

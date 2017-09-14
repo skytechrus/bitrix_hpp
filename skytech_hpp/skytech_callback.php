@@ -1,5 +1,5 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'].'/bitrix/header.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/header.php');
 
 $psID = 0;
 $ptID = 0;
@@ -30,4 +30,4 @@ $APPLICATION->IncludeComponent(
     false
 );
 
-require($_SERVER['DOCUMENT_ROOT'].'/bitrix/footer.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/footer.php');
