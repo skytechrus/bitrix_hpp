@@ -10,3 +10,4 @@
 /vendor/
 /distr/*
 !/distr/.gitkeep
+/node_modules/
