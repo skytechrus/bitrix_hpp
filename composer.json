@@ -1,0 +1,15 @@
+{
+  "name": "skytech/payment-hpp-bitrix",
+  "description": "Hosted payment page module for Bitrix",
+  "minimum-stability": "dev",
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Sergey Ivanov",
+      "email": "sv@skytecrussia.com"
+    }
+  ],
+  "require-dev": {
+    "codeception/codeception": "2.3.5"
+  }
+}
