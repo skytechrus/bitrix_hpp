@@ -1,0 +1,31 @@
+{
+  "name": "skytech_hpp",
+  "version": "0.0.1",
+  "description": "Skytech hosted payment page",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/skytechrus/bitrix_hpp.git"
+  },
+  "keywords": [
+    "skytech",
+    "bitrix",
+    "module",
+    "plugin",
+    "payment"
+  ],
+  "author": "Sergei Ivanov",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/skytechrus/bitrix_hpp#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-git": "^2.4.2",
+    "gulp-util": "^3.0.8"
+  }
+}
