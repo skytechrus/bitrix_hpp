@@ -1,6 +1,3 @@
-###############################################################################
-#                          Generated on phpdocker.io                          #
-###############################################################################
 version: "3.1"
 services:
 
@@ -9,10 +6,10 @@ services:
       container_name: bitrix-mysql
       working_dir: /application
       volumes:
-        - .:/application
+        - ./distr/bitrix/init.sql:/docker-entrypoint-initdb.d/init.sql # установка дампа БД свежей установки битрикса
       environment:
         - MYSQL_ROOT_PASSWORD=bitrix
-        - MYSQL_DATABASE=bitrix
+        - MYSQL_DATABASE=sitemanager
         - MYSQL_USER=bitrix
         - MYSQL_PASSWORD=bitrix
       ports:
@@ -23,22 +20,17 @@ services:
       container_name: bitrix-php-fpm
       working_dir: /application
       volumes:
-        - ./distr:/application/public
-        - ./src/skytech_h/pp:/application/public/bitrix/modules/sale/payment/skytech
+        - ./distr/bitrix:/application/public # добавляем дистрибутив битрикса
+        - ./src/skytech_hpp:/application/public/bitrix/modules/sale/payment/skytech # добавляем разрабатываемый плагин
         - ./docker/php-fpm/php-ini-overrides.ini:/etc/php5/fpm/conf.d/99-overrides.ini
-#      command: bash -c 'mkdir /application/public/ && tar -xvzf /application/business_encode_php5.tar.gz -C /application/public/'
 
     webserver:
       image: nginx:alpine
       container_name: bitrix-webserver
       working_dir: /application
       volumes:
-          - ./distr:/application/public
+          - ./distr/bitrix:/application/public
           - ./src/skytech_hpp:/application/public/bitrix/modules/sale/payment/skytech
           - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       ports:
        - "8181:80"
-
-volumes:
-  distr2:
-
