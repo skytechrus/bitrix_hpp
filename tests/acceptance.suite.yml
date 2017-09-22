@@ -7,6 +7,17 @@
 actor: AcceptanceTester
 modules:
     enabled:
-        - PhpBrowser:
-            url: http://localhost/myapp
+#        - PhpBrowser:
+#            url: http://localhost:8181
+        - WebDriver:
+            url: http://localhost:8181
+            browser: chrome
+            capabilities:
+               chromeOptions:
+                  args: ['start-maximized']
+
         - \Helper\Acceptance
+extensions:
+     enabled:
+         - Codeception\Extension\RunProcess:
+             0: java -Dwebdriver.chrome.driver=D:\Tools\Selenium-webdriver\chromedriver.exe -jar D:\Tools\selenium-server-standalone-3.5.3.jar
