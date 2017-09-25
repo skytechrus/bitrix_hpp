@@ -1,4 +1,6 @@
-<?php 
+<?php
+use Page\Test3DsCreditCard as Test3DsCreditCard;
+
 $I = new AcceptanceTester($scenario);
 $I->wantTo('buy order by test minb card with 3ds');
 $I->amOnPage('/');
@@ -33,5 +35,15 @@ $I->fillField('ORDER_PROP_7', 'test');
 $I->click('//*[@id="bx-soa-orderSave"]/a');
 $I->waitForText('Заказ сформирован');
 $I->click('Оплатить');
-
-$I->wait(10);
+$I->waitForText('ОБЗОР ЗАКАЗА', 30);
+$I->canSee('ОБЗОР ЗАКАЗА');
+$I->fillField(Test3DsCreditCard::$firstNameField, Test3DsCreditCard::$firshName);
+$I->fillField(Test3DsCreditCard::$lastNameField, Test3DsCreditCard::$lastName);
+$I->fillField(Test3DsCreditCard::$panField, Test3DsCreditCard::$pan);
+$I->fillField(Test3DsCreditCard::$cvvField, Test3DsCreditCard::$cvv);
+$I->selectOption(Test3DsCreditCard::$expireMonthField, Test3DsCreditCard::$expireMonth);
+$I->selectOption(Test3DsCreditCard::$expireYearField, Test3DsCreditCard::$expireYear);
+$I->click(Test3DsCreditCard::$successButton);
+$I->waitForText('Главная страница');
+//$I->wait(30);
+$I->cantSee('Не удалось совершить оплату', '//*[@id="bx_eshop_wrap"]/div[1]/div/div/div[1]');
