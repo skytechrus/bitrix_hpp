@@ -3,7 +3,7 @@
 use Page\Test3DsCreditCard as Test3DsCreditCard;
 
 $I = new AcceptanceTester($scenario);
-$I->wantTo('buy order by test minb card with 3ds');
+$I->wantTo('cancel pay');
 $I->amOnPage('/');
 $I->moveMouseOver('//*[@id="bx_eshop_wrap"]/div[1]/div/div/div/div[3]/div[1]/div/div/div[1]/div/div/div');
 $I->waitForText('В корзину');
@@ -45,10 +45,7 @@ $I->fillField(Test3DsCreditCard::$cvvField, Test3DsCreditCard::$cvv);
 $I->selectOption(Test3DsCreditCard::$expireMonthField, Test3DsCreditCard::$expireMonth);
 $I->selectOption(Test3DsCreditCard::$expireYearField, Test3DsCreditCard::$expireYear);
 $I->click(Test3DsCreditCard::$cancelButton);
-//$I->waitForText('Главная страница');
-//$I->wait(30);
 $I->waitForText('ОКНО ПОДТВЕРЖДЕНИЯ', 10);
 $I->click('//*[@id="hpp-confirm-button-yes"]');
-//*[@id="hpp-confirm-button-no"]
-$I->wait(30);
-//$I->cantSee('Не удалось совершить оплату', '//*[@id="bx_eshop_wrap"]/div[1]/div/div/div[1]');
+$I->waitForText('Главная страница', 30);
+$I->canSee('Оплата отменена', '//*[@id="bx_eshop_wrap"]/div[1]/div/div/div[1]');
