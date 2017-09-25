@@ -22,6 +22,7 @@ services:
       volumes:
         - ./distr/bitrix:/application/public # добавляем дистрибутив битрикса
         - ./src/skytech_hpp:/application/public/bitrix/modules/sale/payment/skytech # добавляем разрабатываемый плагин
+        - ./src/skytech_hpp/skytech_callback.php:/application/public/bitrix/tools/skytech_callback.php # страница обработки результата платежа
         - ./docker/php-fpm/php-ini-overrides.ini:/etc/php5/fpm/conf.d/99-overrides.ini
 
     webserver:
@@ -29,8 +30,9 @@ services:
       container_name: bitrix-webserver
       working_dir: /application
       volumes:
-          - ./distr/bitrix:/application/public
-          - ./src/skytech_hpp:/application/public/bitrix/modules/sale/payment/skytech
+          - ./distr/bitrix:/application/public # добавляем дистрибутив битрикса
+          - ./src/skytech_hpp:/application/public/bitrix/modules/sale/payment/skytech # добавляем разрабатываемый плагин
+          - ./src/skytech_hpp/skytech_callback.php:/application/public/bitrix/tools/skytech_callback.php # страница обработки результата платежа
           - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       ports:
        - "8181:80"
