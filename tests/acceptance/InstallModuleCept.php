@@ -8,15 +8,21 @@ $I->fillField('USER_LOGIN', 'admin');
 $I->fillField('USER_PASSWORD', 'q3sermon');
 $I->click('Login');
 $I->waitForText('Администрирование');
-$I->waitForText('Подключите свой Битрикс24');
-$I->click('close');
+
+/*
+ * Зайти самому в административную панель Битрикса и поставить галочку
+ * в всплывающем окне Битрикс24, чтобы больше не показывало сообщение
+ * */
+
 $I->waitForText('Магазин');
 $I->click('#global_menu_store');
+$I->waitForText('Настройки');
+$I->click('//*[@id="_global_menu_store"]/div[8]/div[1]/a');
+$I->waitForText('Платежные системы');
+$I->wait(5);
 $I->click('Платежные системы');
 $I->click('#btn_new'); // добавить платежную систему
 $I->selectOption('[name=ACTION_FILE]', 'Skytech');
-$I->waitForText('Показать все');
-$I->click('//*[@id="map"]/div/p/a');
 $I->waitForText('Идентификатор магазина (merchant id)');
 $I->wait(5);
 $I->uncheckOption('PAYSYSTEMBizVal[MAP][PAYSYSTEM_NEW][MERCHANT_ID][0][DELETE]');
