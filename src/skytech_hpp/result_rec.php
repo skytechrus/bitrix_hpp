@@ -23,13 +23,16 @@ if (CModule::IncludeModule('sale')) {
         "ip_address" => trim($_POST['ip_address']),
         "redirect_url" => CSalePaySystemAction::GetParamValue("REDIRECT_URL"),
     );
-
-    if ($_REQUEST['transaction_state'] == "failed") {
-        $answer = 'Не удалось совершить оплату';
-    } elseif ($_REQUEST['transaction_state'] == "success") {
-        $answer = 'Оплата прошла успешно';
+    if (array_key_exists('transaction_state', $_REQUEST)) {
+        if ($_REQUEST['transaction_state'] == "failed") {
+            $answer = 'Не удалось совершить оплату';
+        } elseif ($_REQUEST['transaction_state'] == "success") {
+            $answer = 'Оплата прошла успешно';
+        } else {
+            $answer = $_REQUEST['transaction_state'];
+        }
     } else {
-        $answer = $_REQUEST['transaction_state'];
+        $answer = 'Оплата отменена';
     }
 
     $arOrder = CSaleOrder::GetByID($orderNumber = IntVal($ORDER_ID));
